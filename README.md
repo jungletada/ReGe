@@ -1,11 +1,13 @@
-# Salient Object Aware Background Generation [![Paper](assets/arxiv.svg)](https://arxiv.org/pdf/2404.10157.pdf) [![Model](assets/huggingface.svg)](https://huggingface.co/yahoo-inc/photo-background-generation)
-This repository accompanies our paper, [Salient Object-Aware Background Generation using Text-Guided Diffusion Models](https://arxiv.org/abs/2404.10157), which has been accepted for publication in [CVPR 2024 Generative Models for Computer Vision](https://generative-vision.github.io/workshop-CVPR-24/) workshop. You can try our model on [Huggingface](https://huggingface.co/yahoo-inc/photo-background-generation).
+# Salient Object Aware Background Generation
+[Paper](https://arxiv.org/pdf/2404.10157.pdf) 
+[Model](https://huggingface.co/yahoo-inc/photo-background-generation)
+
+## This is a modification of the original project, modified by Dingjie PENG
+This repository accompanies [Salient Object-Aware Background Generation using Text-Guided Diffusion Models](https://arxiv.org/abs/2404.10157), which has been accepted for publication in [CVPR 2024 Generative Models for Computer Vision](https://generative-vision.github.io/workshop-CVPR-24/) workshop. 
+
+On [Huggingface](https://huggingface.co/yahoo-inc/photo-background-generation).
 
 The paper addresses an issue we call "object expansion" when generating backgrounds for salient objects using inpainting diffusion models. We show that models such as [Stable Inpainting](https://huggingface.co/stabilityai/stable-diffusion-2-inpainting) can sometimes arbitrarily expand or distort the salient object, which is undesirable in applications where the object's identity should be preserved, such as e-commerce ads. Some examples of object expansion:
-
-<div align="center">
-  <img src="assets/fig.jpg">
-</div>
 
 
 
@@ -18,6 +20,15 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+### Inference
+
+Please refer to `inference.ipynb`. Tu run the code you need to download our model checkpoints. You can also try our model using Huggingface pipeline:
+
+```
+from diffusers import DiffusionPipeline
+pipeline = DiffusionPipeline.from_pretrained("yahoo-inc/photo-background-generation")
+```
+
 ### Training
 
 The following runs the training of text-to-image inpainting ControlNet initialized with the weights of "stable-diffusion-2-inpainting":
@@ -28,15 +39,6 @@ accelerate launch --multi_gpu --mixed_precision=fp16 --num_processes=8 train_con
 The following runs the training of text-to-image ControlNet initialized with the weights of "stable-diffusion-2-base":
 ```bash
 accelerate launch --multi_gpu --mixed_precision=fp16 --num_processes=8 train_controlnet.py --pretrained_model_name_or_path "stable-diffusion-2-base" --proportion_empty_prompts 0.1
-```
-
-### Inference
-
-Please refer to `inference.ipynb`. Tu run the code you need to download our model checkpoints. You can also try our model using Huggingface pipeline:
-
-```
-from diffusers import DiffusionPipeline
-pipeline = DiffusionPipeline.from_pretrained("yahoo-inc/photo-background-generation")
 ```
 
 ## Models Checkpoints
