@@ -1,0 +1,38 @@
+{
+  "_class_name": "StableDiffusionControlNetInpaintPipeline",
+  "_diffusers_version": "0.20.0.dev0",
+  "_name_or_path": "yahoo-inc/photo-background-generation",
+  "controlnet": [
+    "diffusers",
+    "ControlNetModel"
+  ],
+  "feature_extractor": [
+    "transformers",
+    "CLIPImageProcessor"
+  ],
+  "requires_safety_checker": false,
+  "safety_checker": [
+    null,
+    null
+  ],
+  "scheduler": [
+    "diffusers",
+    "UniPCMultistepScheduler"
+  ],
+  "text_encoder": [
+    "transformers",
+    "CLIPTextModel"
+  ],
+  "tokenizer": [
+    "transformers",
+    "CLIPTokenizer"
+  ],
+  "unet": [
+    "diffusers",
+    "UNet2DConditionModel"
+  ],
+  "vae": [
+    "diffusers",
+    "AutoencoderKL"
+  ]
+}
