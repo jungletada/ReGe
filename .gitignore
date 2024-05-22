@@ -2,3 +2,6 @@
 *.bin
 .ipynb_checkpoints
 __pycache__
+*.pth
+*.pt
+*.zip
