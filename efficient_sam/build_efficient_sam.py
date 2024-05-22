@@ -7,7 +7,7 @@
 from .modeling.efficient_sam import build_efficient_sam
 
 
-def build_efficient_sam_vit_ti(checkpoint="weights/efficient_sam_vitt.pt"):
+def build_efficient_sam_vit_ti(checkpoint="efficient_sam_vitt.pt"):
     return build_efficient_sam(
         encoder_patch_embed_dim=192,
         encoder_num_heads=3,
@@ -15,7 +15,7 @@ def build_efficient_sam_vit_ti(checkpoint="weights/efficient_sam_vitt.pt"):
     ).eval()
 
 
-def build_efficient_sam_vit_s(checkpoint="weights/efficient_sam_vits.pt",):
+def build_efficient_sam_vit_s(checkpoint="efficient_sam_vits.pt",):
     return build_efficient_sam(
         encoder_patch_embed_dim=384,
         encoder_num_heads=6,
