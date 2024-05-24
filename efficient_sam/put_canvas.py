@@ -69,26 +69,28 @@ def add_pure_background(img_add):
     rgb_img[~mask] = fill_img[~mask]
     return rgb_img.astype(img_add.dtype)
 
-    
-base_path = 'figs/outputs'
-output_path = 'figs/geo_outputs'
-img_name = 'huili_shoes' # motor
-image_path = f'{base_path}/{img_name}_vit_s_pts_mask_BGRA_cropped.png'
-# mask_path = f'{base_path}/{img_name}_vit_s_pts_mask_cropped.npy'
-# mask = np.load(mask_path) # H, W
-img_bgra = cv2.imread(image_path, cv2.IMREAD_UNCHANGED) # H, W, 4
 
 
-# Example usage
-canvas_size = (720, 960)  # Example canvas size
-scale_factor = 0.9  # Example scaling factor
-rotation_angle = 0  # Example rotation angle in degrees
-translation_xy = (0, 0)  # Example translation (x, y)
+if __name__ == '__main__':    
+    base_path = 'figs/outputs'
+    output_path = 'figs/geo_outputs'
+    img_name = 'huili_shoes' # motor
+    image_path = f'{base_path}/{img_name}_vit_s_pts_mask_BGRA_cropped.png'
+    # mask_path = f'{base_path}/{img_name}_vit_s_pts_mask_cropped.npy'
+    # mask = np.load(mask_path) # H, W
+    img_bgra = cv2.imread(image_path, cv2.IMREAD_UNCHANGED) # H, W, 4
 
-# Perform transformations and get the final image and mask
-img_add, mask = create_canvas_and_transform_image(img_bgra, canvas_size, scale_factor, rotation_angle, translation_xy)
-# img_background = add_pure_background(img_add)
 
-cv2.imwrite(os.path.join(output_path, f'{img_name}_mask.png'), mask.astype(np.uint8) * 255)
-cv2.imwrite(os.path.join(output_path, f'{img_name}_canvas.png'), img_add)
-# cv2.imwrite(os.path.join(output_path, f'{img_name}_background.png'), img_background)
+    # Example usage
+    canvas_size = (720, 960)  # Example canvas size
+    scale_factor = 0.9  # Example scaling factor
+    rotation_angle = 0  # Example rotation angle in degrees
+    translation_xy = (0, 0)  # Example translation (x, y)
+
+    # Perform transformations and get the final image and mask
+    img_add, mask = create_canvas_and_transform_image(img_bgra, canvas_size, scale_factor, rotation_angle, translation_xy)
+    # img_background = add_pure_background(img_add)
+
+    cv2.imwrite(os.path.join(output_path, f'{img_name}_mask.png'), mask.astype(np.uint8) * 255)
+    cv2.imwrite(os.path.join(output_path, f'{img_name}_canvas.png'), img_add)
+    # cv2.imwrite(os.path.join(output_path, f'{img_name}_background.png'), img_background)
